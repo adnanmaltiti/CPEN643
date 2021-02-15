@@ -1,0 +1,117 @@
+
+<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Adnan Maltiti">
+    <title>Dashboard - Transaction Monitor</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Transaction Monitor</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="signout.php">Sign out</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="dashboard.html">
+                <span data-feather="home"></span>
+                Dashboard
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add a new transaction</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+          </div>
+        </div>
+        <form action="addtransactions.php" method="post">
+        <div class="mb-3">
+          <label for="cname" class="form-label">Customer Name</label>
+          <input type="text" name="cname" class="form-control" id="cname" placeholder="Mr. Adnan Maltiti" required>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="goods" class="form-label">Select Goods</label>
+          <select class="form-control" name="goods" id="goods">
+            <option value="1">Watches and Jewelry</option>
+            <option value="2">Shoes and Bags</option>
+            <option value="3">General Merchandise</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input type="number" name="quantity" class="form-control" id="quantity" required>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date of transaction</label>
+          <input type="date" name="tdate" class="form-control" id="date" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="goods" class="form-label">Select Database to store</label>
+          <select class="form-control" name="db" id="goods">
+            <option value="1">MariaDB</option>
+            <option value="2">MySQL</option>
+            <option value="3">SQLite</option>
+            <option value="4">PostgreSQL</option>
+          </select>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" name="add" type="submit">Add transation</button>
+      </form>
+        <br><br>
+      </main>
+    </div>
+  </div>
+  <script src="assests/js/bootstrap.bundle.min.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
