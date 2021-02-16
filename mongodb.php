@@ -79,7 +79,7 @@ $transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
         </div>
       </div>
 
-      <h2>Database: MySQL</h2>
+      <h2>Database: MongoDB</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>

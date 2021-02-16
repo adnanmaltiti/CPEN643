@@ -1,9 +1,9 @@
 <?php 
 session_start();
 include_once("config.php");
-if($_SESSION['userid'] != ''){
-  header('Refresh:1; url= '.$url.'dashboard.html', true, 303);
-} ?>
+// if($_SESSION['userid'] != ''){
+//   header('Refresh:1; url= '.$url.'dashboard.html', true, 303);
+// } ?>
 <!doctype html>
   <html lang="en">
   <head>
@@ -47,7 +47,7 @@ if($_SESSION['userid'] != ''){
       <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="visually-hidden">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control" required>
-      <label>Already have an account? <a href="index.html">Sign in</a></label><br>
+      <label>Already have an account? <a href="index.php">Sign in</a></label><br>
       <button class="w-100 btn btn-lg btn-primary" name="signup" type="submit">Create your account</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>

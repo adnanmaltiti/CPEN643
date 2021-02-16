@@ -2,8 +2,7 @@
 session_start();
 include_once("config.php");
 
-$transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
-
+$stmt = $sqlserver_connect->query("SELECT * FROM transactionssqlserv");
 ?>
 <!doctype html>
 <html lang="en">
@@ -79,7 +78,7 @@ $transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
         </div>
       </div>
 
-      <h2>Database: MySQL</h2>
+      <h2>Database: SQL Server</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -94,7 +93,7 @@ $transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
             </tr>
           </thead>
           <tbody>
-            <?php while ($results = $transactions->fetch_object()) { ?>
+            <?php while ($results = $stmt->fetchall(PDO::FETCH_BOTH)) { ?>
             <tr>
               <td><?php echo $results->transactionid; ?></td>
               <td><?php echo $results->customer; ?></td>

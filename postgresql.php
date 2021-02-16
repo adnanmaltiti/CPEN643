@@ -3,6 +3,7 @@ session_start();
 include_once("config.php");
 
 $transactions = pg_query($pg_connect, "SELECT * FROM transactionspg");
+//var_dump($transactions); die();
 ?>
 <!doctype html>
 <html lang="en">
@@ -95,13 +96,13 @@ $transactions = pg_query($pg_connect, "SELECT * FROM transactionspg");
           <tbody>
             <?php while ($results = pg_fetch_row($transactions)) { ?>
             <tr>
-              <td><?php echo $results['transactionid']; ?></td>
-              <td><?php echo $results['customer']; ?></td>
-              <td><?php echo $results['Address']; ?></td>
-              <td><?php if($results['goods'] == 1){ echo "Watches and Jewelry"; } elseif($results['goods'] == 2){ echo "Shoes and Bags"; } elseif($results['goods'] == 3){ echo "General Merchandise"; } else { echo "Goods"; } ?></td>
-              <td><?php echo $results['quantity']; ?></td>
-              <td><?php echo $results['transactiondate']; ?></td>
-              <td><?php if($results['dbselect'] == 1){ echo "MariaDB"; } elseif($results['dbselect'] == 2){ echo "MySQL"; } elseif($results['dbselect'] == 3){ echo "SQLite"; } elseif($results['dbselect'] == 4){ echo "Postgresql"; } else { echo "Goods"; } ?></td>
+              <td><?php echo $results[0]; ?></td>
+              <td><?php echo $results[1]; ?></td>
+              <td><?php echo $results[2]; ?></td>
+              <td><?php if($results[3] == 1){ echo "Watches and Jewelry"; } elseif($results[3] == 2){ echo "Shoes and Bags"; } elseif($results[3] == 3){ echo "General Merchandise"; } else { echo "Goods"; } ?></td>
+              <td><?php echo $results[4]; ?></td>
+              <td><?php echo $results[5]; ?></td>
+              <td><?php if($results[6] == 1){ echo "MariaDB"; } elseif($results[6] == 2){ echo "MySQL"; } elseif($results[6] == 3){ echo "SQLite"; } elseif($results[6] == 4){ echo "Postgresql"; } else { echo "Goods"; } ?></td>
             </tr>
           <?php } ?>
           </tbody>

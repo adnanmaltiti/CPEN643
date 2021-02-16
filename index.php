@@ -1,9 +1,9 @@
 <?php 
 session_start();
 include_once("config.php");
-if($_SESSION['userid'] != ''){
-  header('Refresh:1; url= '.$url.'dashboard.html', true, 303);
-} ?>
+// if($_SESSION['userid'] != ''){
+//  header('Refresh:1; url= '.$url.'dashboard.html', true, 303);
+// } ?>
 <!doctype html>
   <html lang="en">
   <head>
