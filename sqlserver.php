@@ -1,8 +1,9 @@
 <?php
 session_start();
+$user = $_SESSION['userid'];
 include_once("config.php");
 
-$stmt = $sqlserver_connect->query("SELECT * FROM transactionssqlserv");
+$stmt = sqlsrv_query($sqlserver_connect, "SELECT * FROM transactionssqlserv WHERE userid = '".$user."'");
 ?>
 <!doctype html>
 <html lang="en">
@@ -93,15 +94,15 @@ $stmt = $sqlserver_connect->query("SELECT * FROM transactionssqlserv");
             </tr>
           </thead>
           <tbody>
-            <?php while ($results = $stmt->fetchall(PDO::FETCH_BOTH)) { ?>
+            <?php while ($results = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) { ?>
             <tr>
-              <td><?php echo $results->transactionid; ?></td>
-              <td><?php echo $results->customer; ?></td>
-              <td><?php echo $results->Address; ?></td>
-              <td><?php if($results->goods == 1){ echo "Watches and Jewelry"; } elseif($results->goods == 2){ echo "Shoes and Bags"; } elseif($results->goods == 3){ echo "General Merchandise"; } else { echo "Goods"; } ?></td>
-              <td><?php echo $results->quantity; ?></td>
-              <td><?php echo $results->transactiondate; ?></td>
-              <td><?php if($results->dbselect == 1){ echo "MariaDB"; } elseif($results->dbselect == 2){ echo "MySQL"; } elseif($results->dbselect == 3){ echo "Postgresql"; } elseif($results->dbselect == 4){ echo "SQLite"; } else { echo "Goods"; } ?></td>
+              <td><?php echo $results['transactionid']; ?></td>
+              <td><?php echo $results['customer']; ?></td>
+              <td><?php echo $results['Address']; ?></td>
+              <td><?php if($results['goods'] == 1){ echo "Watches and Jewelry"; } elseif($results['goods'] == 2){ echo "Shoes and Bags"; } elseif($results['goods'] == 3){ echo "General Merchandise"; } else { echo "Goods"; } ?></td>
+              <td><?php echo $results['quantity']; ?></td>
+              <td><?php echo $results['transactiondate']; ?></td>
+              <td><?php if($results['dbselect'] == 1){ echo "MariaDB"; } elseif($results['dbselect'] == 2){ echo "MySQL"; } elseif($results['dbselect'] == 3){ echo "Postgresql"; } elseif($results['dbselect'] == 4){ echo "SQLite"; } elseif($results['dbselect'] == 5){ echo "MS SQL Server"; } else { echo "Goods"; } ?></td>
             </tr>
           <?php } ?>
           </tbody>

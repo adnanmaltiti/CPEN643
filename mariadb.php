@@ -1,8 +1,9 @@
 <?php
 session_start();
+$user = $_SESSION['userid'];
 include_once("config.php");
 
-$transactions = $db->query("SELECT * FROM transactionsmaria");
+$transactions = $mariadb_connect->query("SELECT * FROM transactionsmaria WHERE user = '".$user."'");
 
 ?>
 <!doctype html>
@@ -58,6 +59,9 @@ $transactions = $db->query("SELECT * FROM transactionsmaria");
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
+        <?php $userstmt = $mariadb_connect->query("SELECT * FROM users WHERE id = '".$user."'");
+              $userrow = $userstmt->fetch_object(); ?>
+              <h5><?php echo $userrow->fname." ".$userrow->lname; ?></h5>
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="dashboard.html">

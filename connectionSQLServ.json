@@ -1,0 +1,9 @@
+{
+    "Server"="localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;",
+    "Oracle"="PDBMIN=schoolmate"
+    
+}
+
+multi-tenant-db: localhost:1521
+plugabble-db: localhost:1521/XEPDB1
+EM-express-url: https://localhost/5500/em

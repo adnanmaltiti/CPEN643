@@ -10,8 +10,8 @@ if(isset($_POST['signup'])){
 	$password = md5($password);
 	$date = date('Y-m-d');
 
-	$query = $db->query("INSERT INTO `users`(`id`, `fname`, `lname`, `email`, `password`, `joindate`) VALUES ('','$fname','$lname','$email','$password','$date')");
-	$userid = mysqli_insert_id($db);
+	$query = $mariadb_connect->query("INSERT INTO `users`(`id`, `fname`, `lname`, `email`, `password`, `joindate`) VALUES ('','$fname','$lname','$email','$password','$date')");
+	$userid = mysqli_insert_id($mariadb_connect);
 
 	if($query){
 		$alert = "Signup successful";
@@ -21,6 +21,5 @@ if(isset($_POST['signup'])){
 		echo '<script>alert("please try again.")</script>'; 
 		header( 'Refresh:1; url= '.$url.'signup-html.php', true, 303);
 	}
-
 }
 ?>

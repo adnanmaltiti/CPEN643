@@ -1,66 +1,102 @@
 <?php
+// error_reporting(-1);
+// mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $url = "http://".$_SERVER['HTTP_HOST']."/CPEN643/";
 
-//MariaDB Connection
-$server = "localhost";
-$user = "root";
-$password = "";
-$database = "monitor";
-$db = mysqli_connect($server, $user, $password, $database);
+// //MariaDB Connection
+function mariadb ()
+{
+    try {
+        $server = "localhost";
+        $user = "root";
+        $password = "";
+        $database = "monitor";
+        $db = mysqli_connect($server, $user, $password, $database);
+        if($db == false){  
+            die();
+        }
 
-//MySQL Connection
-$server = "localhost";
-$user = "root";
-$password = "schoolmate";
-$database = "monitorMysql";
-$port = "3360";
-$mysql_connect = mysqli_connect($server, $user, $password, $database, $port);
+    } catch (Exception $e) {
+        echo("Error");
+    }
+    return $db;
+}
 
-//SQLite Connection
+$mariadb_connect = mariadb();
+
+// //MySQL Connection
+function mysqlServ()
+{
+    try {
+        $server = "localhost";
+        $user = "root";
+        $password = "schoolmate";
+        $database = "monitorMysql";
+        $port = "3360";
+        $db = mysqli_connect($server, $user, $password, $database, $port);
+        if($db == false){  
+            die();
+        }
+    } catch (Exception $e) {
+        echo("Error");
+    }
+    return $db;
+}
+
+$mysql_connect = mysqlServ();
+
+// //SQLite Connection
 class NewSQLite extends SQLite3 {
     function __construct() {
          $this->open('sqlite/sqliteTrans.db');
     }
 }
+
 $sqlite_connect = new NewSQLite();
 
-//PostgreSQL Connection
-$host        = "host = 127.0.0.1";
-$port        = "port = 5432";
-$dbname      = "dbname = monitorPG";
-$credentials = "user=postgres password=schoolmate";
-
-$pg_connect = pg_connect("$host $port $dbname $credentials");
-
-//SQL Server Connection
-function sqlserver()  
-{  
-    try  
-    {  
-        $serverName = "DESKTOP-6M0SK62\SQLEXPRESS,1433";  
-        $connectionOptions = array("Database"=>"monitorSQLServer",  
-            "Uid"=>"adn93", "PWD"=>"");  
-        $conn = sqlsrv_connect($serverName, $connectionOptions);  
-        if($conn == false){  
-            die(print_r(sqlsrv_errors()));
+// //PostgreSQL Connection
+function postgresql()
+{
+    try {
+        $host        = "host = 127.0.0.1";
+        $port        = "port = 5432";
+        $dbname      = "dbname = monitorPG";
+        $credentials = "user=postgres password=schoolmate";
+        $db = pg_connect("$host $port $dbname $credentials");
+        if($db == false){  
+            die();
         }
-    }  
-    catch(Exception $e)  
-    {  
-        echo("Error!");  
-    }  
+    } catch (Exception $e) {
+        echo("Error");
+    }
+    return $db;
 }
 
-//Creating the transactionssqlserv table 
-// $sqlserver_connect = sqlserver();
-// $query= $sqlserver_connect->query("CREATE TABLE IF NOT EXISTS transactionssqlserv(transactionid INT PRIMARY KEY AUTO INCREMENT, customer CHAR(100) NOT NULL, Address  CHAR(100) NOT NULL, goods    CHAR(100) NOT NULL, quantity CHAR(100) NOT NULL, transactiondate CHAR(100) NOT NULL, dbselect CHAR(100) NOT NULL);");
-//End of table creation
-//End SQL Server Connection
+$pg_connect = postgresql();
+
+// //SQL Server Connection
+function sqlserver()  
+{  
+    try {  
+        $serverName = "localhost\SQLEXPRESS, 1433";
+        $connectionInfo = array( "Database"=>"monitorSQLServer");
+        $db = sqlsrv_connect($serverName, $connectionInfo);
+    }  
+    
+    catch( Exception $e ) {  
+    die( "Error connecting to SQL Server" );   
+    }
+    return $db;
+}
+
+$sqlserver_connect = sqlserver();
 
 // MongoDb Connection
 
-
 // $client = new MongoDB\Client(
-//     'mongodb+srv://octet_user1:schoolmate@octet.5fju3.azure.mongodb.net/octet?retryWrites=true&w=majority');
+//     'mongodb+srv://new-mongou:schoolmate@cluster0.nvyj4.mongodb.net/Cluster0?retryWrites=true&w=majority');
 
 // $db = $client->test;
+
+// $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+// var_dump($manager);

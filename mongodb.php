@@ -2,8 +2,6 @@
 session_start();
 include_once("config.php");
 
-$transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
-
 ?>
 <!doctype html>
 <html lang="en">

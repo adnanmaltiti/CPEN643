@@ -1,8 +1,9 @@
 <?php
 session_start();
+$user = $_SESSION['userid'];
 include_once("config.php");
 
-$transactions = $mysql_connect->query("SELECT * FROM transactionsmysql");
+$transactions = $mysql_connect->query("SELECT * FROM transactionsmysql WHERE user = '".$user."' ");
 
 ?>
 <!doctype html>

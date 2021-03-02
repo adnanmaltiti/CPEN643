@@ -1,9 +1,9 @@
 <?php
 session_start();
+$user = $_SESSION['userid'];
 include_once("config.php");
 
-$transactions = pg_query($pg_connect, "SELECT * FROM transactionspg");
-//var_dump($transactions); die();
+$transactions = pg_query($pg_connect, "SELECT * FROM transactionspg WHERE userid = '".$user."'");
 ?>
 <!doctype html>
 <html lang="en">

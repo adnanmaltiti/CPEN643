@@ -1,8 +1,9 @@
 <?php
 session_start();
+$user = $_SESSION['userid'];
 include_once("config.php");
 
-$transactions = $sqlite_connect->query("SELECT * FROM transactionssqlite");
+$transactions = $sqlite_connect->query("SELECT * FROM transactionssqlite  WHERE user = '".$user."'");
 ?>
 <!doctype html>
 <html lang="en">
